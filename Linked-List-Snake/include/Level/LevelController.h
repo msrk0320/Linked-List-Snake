@@ -5,7 +5,6 @@ namespace Level {
 	class LevelView;
 	class LevelController {
 	private:
-		void Destroy();
 		LevelView* levelView;
 		LevelModel* levelModel;
 
@@ -16,5 +15,8 @@ namespace Level {
 		void initialize();
 		void render();
 		void update();
+
+		float getCellWidth();
+		float getCellHeight();
 	};
 }
