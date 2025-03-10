@@ -1,6 +1,7 @@
-#include "../../include/Level/LevelModel.h"
+#include "Level/LevelModel.h"
 
-namespace Level {
+namespace Level
+{
 	LevelModel::LevelModel() = default;
 
 	LevelModel::~LevelModel() = default;

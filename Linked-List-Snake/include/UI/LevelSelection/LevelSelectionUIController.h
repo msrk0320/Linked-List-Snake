@@ -1,48 +1,53 @@
 #pragma once
-#include <UI/UIElement/ImageView.h>
-#include <UI/UIElement/ButtonView.h>
+#include <SFML/Graphics.hpp>
 #include "UI/Interface/IUIController.h"
+#include "UI/UIElement/ButtonView.h"
+#include "UI/UIElement/ImageView.h"
 
-namespace UI {
-	namespace LevelSelection {
-		class LevelSelectionUIController : public Interface::IUIController {
+namespace UI
+{
+	namespace LevelSelection
+	{
+		class LevelSelectionUIController : public Interface::IUIController
+		{
 		private:
-			void Destroy();
+			// Constants:
+			const float button_width = 400.f;
+			const float button_height = 140.f;
 
-			UIElement::ImageView* background_Image;
-			UIElement::ButtonView* levelOne_Button;
-			UIElement::ButtonView* levelTwo_Button;
-			UIElement::ButtonView* menu_Button;
+			const float level_one_button_y_position = 500.f;
+			const float level_two_button_y_position = 700.f;
+			const float menu_button_y_position = 900.f;
 
-			const float levelOne_Button_Position = 500.0f;
-			const float levelTwo_Button_Position = 700.0f;
-			const float menu_Button_Position = 900.0f;
-			const float buttonWidth = 400.0f;
-			const float buttonHeight = 140.f;
+			const float background_alpha = 85.f;
 
-			const float background_alpha = 85.0f;
+			UI::UIElement::ImageView* background_image;
+
+			UI::UIElement::ButtonView* level_one_button;
+			UI::UIElement::ButtonView* level_two_button;
+			UI::UIElement::ButtonView* menu_button;
+
+			void createImage();
+			void createButtons();
+			void initializeBackgroundImage();
+			void initializeButtons();
+			void registerButtonCallback();
+			float calculateLeftOffsetForButton();
+
+			void levelOneButtonCallback();
+			void levelTwoButtonCallback();
+			void menuButtonCallback();
+
+			void destroy();
 
 		public:
 			LevelSelectionUIController();
 			~LevelSelectionUIController();
 
-			void initializeBackgroundImage();
-			float calculateLeftOffsetForButton();
-
 			void initialize() override;
 			void update() override;
 			void render() override;
 			void show() override;
-
-			void createImage();
-			void createButtons();
-			void initializeButtons();
-			void registerButtons();
-
-			void levelOne_Button_Callback();
-			void levelTwo_Button_Callback();
-			void menu_Button_Callback();
-
 		};
 	}
 }

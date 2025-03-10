@@ -1,44 +1,44 @@
-#include "../../include/Level/LevelController.h"
-#include "../../include/Level/LevelModel.h"
-#include "../../include/Level/LevelView.h"
+#include "Level/LevelController.h"
+#include "Level/LevelModel.h"
+#include "Level/LevelView.h"
 
-namespace Level {
-
+namespace Level
+{
 	LevelController::LevelController()
 	{
-		levelModel = new LevelModel();
-		levelView = new LevelView();
+		level_model = new LevelModel();
+		level_view = new LevelView();
 	}
 
 	LevelController::~LevelController()
 	{
-		delete levelView;
-		delete levelModel;
+		delete level_model;
+		delete level_view;
 	}
 
 	void LevelController::initialize()
 	{
-		levelView->initialize();
-		levelModel->initialize(levelView->getGridWidth(), levelView->getGridHeight());
-	}
-
-	void LevelController::render()
-	{
-		levelView->render();
+		level_view->initialize();
+		level_model->initialize(level_view->getGridWidth(), level_view->getGridHeight());
 	}
 
 	void LevelController::update()
 	{
-		levelView->update();
+		level_view->update();
+	}
+
+	void LevelController::render()
+	{
+		level_view->render();
 	}
 
 	float LevelController::getCellWidth()
 	{
-		return levelModel->getCellWidth();
+		return level_model->getCellWidth();
 	}
 
 	float LevelController::getCellHeight()
 	{
-		return levelModel->getCellHeight();
+		return level_model->getCellHeight();
 	}
 }

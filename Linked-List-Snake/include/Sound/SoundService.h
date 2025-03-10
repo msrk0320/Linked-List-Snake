@@ -11,7 +11,7 @@ namespace Sound
 	class SoundService
 	{
 	private:
-		const int background_music_volume = 30;
+		const int background_music_volume = 0;
 
 		sf::Music background_music;
 		sf::Sound sound_effect;

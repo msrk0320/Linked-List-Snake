@@ -1,10 +1,10 @@
 #pragma once
 #include "UI/MainMenu/MainMenuUIController.h"
 #include "UI/SplashScreen/SplashScreenUIController.h"
+#include "UI/LevelSelection/LevelSelectionUIController.h"
 #include "Instructions/InstructionsScreenUIController.h"
 #include "UI/Credits/CreditsScreenUIController.h"
 #include "UI/Interface/IUIController.h"
-#include "UI/LevelSelection/LevelSelectionUIController.h"
 
 namespace UI
 {
@@ -13,10 +13,9 @@ namespace UI
 	private:
 		SplashScreen::SplashScreenUIController* splash_screen_controller;
 		MainMenu::MainMenuUIController* main_menu_controller;
+		LevelSelection::LevelSelectionUIController* level_selection_ui_controller;
 		Instructions::InstructionsScreenUIController* instructions_screen_ui_controller;
 		Credits::CreditsScreenUIController* credits_screen_ui_controller;
-		LevelSelection::LevelSelectionUIController* levelSelectionUIController;
-
 		void createControllers();
 		void initializeControllers();
 		Interface::IUIController* getCurrentUIController();

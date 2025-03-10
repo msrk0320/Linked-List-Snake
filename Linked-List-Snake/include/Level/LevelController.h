@@ -1,22 +1,26 @@
 #pragma once
+#include <vector>
+#include "LevelModel.h"
 
-namespace Level {
-	class LevelModel;
-	class LevelView;
-	class LevelController {
-	private:
-		LevelView* levelView;
-		LevelModel* levelModel;
+namespace Level
+{
+    class LevelView;
 
-	public:
-		LevelController();
-		~LevelController();
+    class LevelController
+    {
+    private:
+        LevelModel* level_model;
+        LevelView* level_view;
 
-		void initialize();
-		void render();
-		void update();
+    public:
+        LevelController();
+        ~LevelController();
 
-		float getCellWidth();
-		float getCellHeight();
-	};
+        void initialize();
+        void update();
+        void render();
+
+        float getCellWidth();
+        float getCellHeight();
+    };
 }

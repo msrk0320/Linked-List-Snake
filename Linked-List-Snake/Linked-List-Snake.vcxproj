@@ -133,7 +133,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="include\UI\LevelSelection\LevelSelectionUIController.h" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="source\Level\LevelController.cpp" />
     <ClCompile Include="source\Level\LevelData..cpp" />
@@ -141,6 +140,13 @@
     <ClCompile Include="source\Level\LevelNumber.cpp" />
     <ClCompile Include="source\Level\LevelService.cpp" />
     <ClCompile Include="source\Level\LevelView.cpp" />
+    <ClCompile Include="source\LinkedList\SingleLinkedList.cpp" />
+    <ClCompile Include="source\Player\BodyPart.cpp" />
+    <ClCompile Include="source\Player\Data.cpp" />
+    <ClCompile Include="source\Player\Direction.cpp" />
+    <ClCompile Include="source\LinkedList\Node.cpp" />
+    <ClCompile Include="source\Player\PlayerService.cpp" />
+    <ClCompile Include="source\Player\SnakeController.cpp" />
     <ClCompile Include="source\Time\TimeService.cpp" />
     <ClCompile Include="source\UI\Credits\CreditsScreenUIController.cpp" />
     <ClCompile Include="source\UI\Instructions\InstructionsScreenUIController.cpp" />
@@ -168,9 +174,17 @@
     <ClInclude Include="include\Level\LevelNumber.h" />
     <ClInclude Include="include\Level\LevelService.h" />
     <ClInclude Include="include\Level\LevelView.h" />
+    <ClInclude Include="include\LinkedList\SingleLinkedList.h" />
+    <ClInclude Include="include\Player\BodyPart.h" />
+    <ClInclude Include="include\Player\Data.h" />
+    <ClInclude Include="include\Player\Direction.h" />
+    <ClInclude Include="include\LinkedList\Node.h" />
+    <ClInclude Include="include\Player\PlayerService.h" />
+    <ClInclude Include="include\Player\SnakeController.h" />
     <ClInclude Include="include\Time\TimeService.h" />
     <ClInclude Include="include\UI\Credits\CreditsScreenUIController.h" />
     <ClInclude Include="include\UI\Instructions\InstructionsScreenUIController.h" />
+    <ClInclude Include="include\UI\LevelSelection\LevelSelectionUIController.h" />
     <ClInclude Include="include\UI\UIElement\AnimatedImageView.h" />
     <ClInclude Include="include\UI\UIElement\ButtonView.h" />
     <ClInclude Include="include\Global\Config.h" />

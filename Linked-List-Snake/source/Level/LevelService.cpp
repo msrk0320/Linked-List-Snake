@@ -1,49 +1,66 @@
-#include "../../include/Level/LevelService.h"
-#include "../../include/Global/Config.h"
-#include "../../include/Level/LevelController.h"
+#include "Level/LevelService.h"
+#include "Level/LevelController.h"
+#include "Global/ServiceLocator.h"
+#include "Level/LevelModel.h"
 
-namespace Level {
+namespace Level
+{
 	using namespace Global;
 
 	LevelService::LevelService()
 	{
-		levelController = nullptr;
+		level_controller = nullptr;
+
 		createLevelController();
 	}
 
 	LevelService::~LevelService()
 	{
-		Destroy();
+		destroy();
 	}
 
 	void LevelService::createLevelController()
 	{
-		levelController = new LevelController();
+		level_controller = new LevelController();
 	}
 
 	void LevelService::initialize()
 	{
-		levelController->initialize();
-	}
-
-	void LevelService::render()
-	{
-		levelController->render();
+		level_controller->initialize();
 	}
 
 	void LevelService::update()
 	{
-		levelController->update();
+		level_controller->update();
+	}
+
+	void LevelService::render()
+	{
+		level_controller->render();
 	}
 
 	void LevelService::createLevel(LevelNumber level_to_load)
 	{
 		current_level = level_to_load;
+		spawnPlayer();
 	}
 
-	void LevelService::Destroy()
+	const float LevelService::getCellWidth()
 	{
-		delete levelController;
+		return level_controller->getCellWidth();
 	}
 
+	const float LevelService::getCellHeight()
+	{
+		return level_controller->getCellHeight();
+	}
+
+	void LevelService::destroy()
+	{
+		delete level_controller;
+	}
+	void LevelService::spawnPlayer()
+	{
+		ServiceLocator::getInstance()->getPlayerService()->spawnPlayer();
+	}
 }
