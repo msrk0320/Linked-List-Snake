@@ -1,7 +1,9 @@
 #pragma once
 #include <vector>
 #include "LevelModel.h"
+#include <Element/ElementData.h>
 
+using namespace Element;
 namespace Level
 {
     class LevelView;
@@ -22,5 +24,6 @@ namespace Level
 
         float getCellWidth();
         float getCellHeight();
+        const std::vector<ElementData>& getElementDataList(int level_to_load);
     };
 }

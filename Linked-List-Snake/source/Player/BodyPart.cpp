@@ -1,10 +1,10 @@
-#include "../../include/Player/BodyPart.h"
 #include <UI/UIElement/ImageView.h>
 #include <SFML/Graphics.hpp>
+#include <iostream>
+#include "../../include/Player/BodyPart.h"
 #include "../../include/Global/Config.h"
 #include "../../include/Level/LevelView.h"
 #include "../../include/Level/LevelModel.h"
-#include <iostream>
 
 using namespace UI::UIElement;
 using namespace sf;
@@ -80,6 +80,27 @@ namespace Player {
 			break;
 		case Player::Direction::RIGHT:
 			getNextPositionRight();
+			break;
+		default:
+			return grid_position;
+		}
+	}
+
+	sf::Vector2i BodyPart::getPrevPosition()
+	{
+		switch (direction)
+		{
+		case Player::Direction::UP:
+			getNextPositionDown();
+			break;
+		case Player::Direction::DOWN:
+			getNextPositionUp();
+			break;
+		case Player::Direction::LEFT:
+			getNextPositionRight();
+			break;
+		case Player::Direction::RIGHT:
+			getNextPositionLeft();
 			break;
 		default:
 			return grid_position;

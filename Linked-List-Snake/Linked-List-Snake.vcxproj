@@ -134,8 +134,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="source\Element\ElementData.cpp" />
+    <ClCompile Include="source\Element\ElementService.cpp" />
+    <ClCompile Include="source\Element\Obstacle.cpp" />
+    <ClCompile Include="source\Food\FoodItem.cpp" />
+    <ClCompile Include="source\Food\FoodService.cpp" />
+    <ClCompile Include="source\Food\FoodType.cpp" />
     <ClCompile Include="source\Level\LevelController.cpp" />
-    <ClCompile Include="source\Level\LevelData..cpp" />
+    <ClCompile Include="source\Level\LevelData.cpp" />
     <ClCompile Include="source\Level\LevelModel.cpp" />
     <ClCompile Include="source\Level\LevelNumber.cpp" />
     <ClCompile Include="source\Level\LevelService.cpp" />
@@ -168,6 +174,12 @@
     <ClCompile Include="source\UI\UIElement\UIView.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Element\ElementData.h" />
+    <ClInclude Include="include\Element\ElementService.h" />
+    <ClInclude Include="include\Element\Obstacle.h" />
+    <ClInclude Include="include\Food\FoodItem.h" />
+    <ClInclude Include="include\Food\FoodService.h" />
+    <ClInclude Include="include\Food\FoodType.h" />
     <ClInclude Include="include\Level\LevelController.h" />
     <ClInclude Include="include\Level\LevelData.h" />
     <ClInclude Include="include\Level\LevelModel.h" />

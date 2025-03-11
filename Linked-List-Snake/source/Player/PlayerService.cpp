@@ -37,6 +37,10 @@ namespace Player {
 		snakeController->spawnSnake();
 	}
 
+	std::vector<sf::Vector2i> PlayerService::getCurrentSnakePositionList()
+	{
+		return snakeController->getCurrentSnakePositionList();
+	}
 
 	void PlayerService::destroy()
 	{

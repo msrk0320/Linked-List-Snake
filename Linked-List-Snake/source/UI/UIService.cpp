@@ -77,7 +77,7 @@ namespace UI
 		switch (GameService::getGameState())
 		{
 		case GameState::SPLASH_SCREEN:
-			return splash_screen_controller;
+			return main_menu_controller;
 
 		case GameState::MAIN_MENU:
 			return main_menu_controller;
