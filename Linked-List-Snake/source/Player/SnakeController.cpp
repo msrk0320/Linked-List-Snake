@@ -156,35 +156,42 @@ namespace Player {
 		switch (food_type)
 		{
 		case FoodType::PIZZA:
-
+			single_linked_list->insertNodeAtTail();
 			//Insert At Tail
 			break;
 
 		case FoodType::BURGER:
+			single_linked_list->insertNodeAtHead();
 			//Insert At Head
 			break;
 
 		case FoodType::CHEESE:
+			single_linked_list->insertNodeAtMiddle();
 			//Insert in Middle
 			break;
 
 		case FoodType::APPLE:
+			single_linked_list->removeNodeAtHead();
 			//Delete at Head
 			break;
 
 		case FoodType::MANGO:
+			single_linked_list->removeNodeAtMiddle();
 			//Delete at Middle
 			break;
 
 		case FoodType::ORANGE:
+			single_linked_list->removeNodeAtTail();
 			//Delete at Tail
 			break;
 
 		case FoodType::POISION:
+			single_linked_list->removeHalfNodes();
 			//Delete half the snake
 			break;
 
 		case FoodType::ALCOHOL:
+			current_snake_direction = single_linked_list->reverse();
 			//Reverse the snake
 			break;
 		}
@@ -202,8 +209,12 @@ namespace Player {
 
 	void SnakeController::spawnSnake()
 	{
-		for (int i = 0; i < initial_snake_length; i++) {
-			single_linked_list->insertNodeAtTail();     // Insert nodes at tail to create the initial snake
+		//for (int i = 0; i < initial_snake_length; i++) {
+		//	single_linked_list->insertNodeAtTail();     // Insert nodes at tail to create the initial snake
+		//}
+		for (size_t i = 0; i < initial_snake_length; i++)
+		{
+			single_linked_list->insertNodeAtTail();
 		}
 	}
 

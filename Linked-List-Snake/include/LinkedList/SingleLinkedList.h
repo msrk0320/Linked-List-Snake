@@ -45,6 +45,11 @@ namespace LinkedList {
 		void updateNodeDirection(Direction direction_to_set);
 		void updateNodePosition();
 
+		Direction reverse();
+		Direction getReverseDirection(Direction reference_direction);
+
+		void reverseNodeDirections();
+
 		// Insertion methods
 		void insertNodeAtHead();
 		void insertNodeAtIndex(int index);
