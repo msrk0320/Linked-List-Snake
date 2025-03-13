@@ -56,7 +56,6 @@ namespace Event
         }
     }
 
-
     bool EventService::isGameWindowOpen() { return game_window != nullptr; }
 
     bool EventService::gameWindowWasClosed() { return game_event.type == sf::Event::Closed; }

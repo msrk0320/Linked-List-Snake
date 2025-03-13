@@ -1,44 +1,55 @@
-#include "Level/LevelModel.h"
-#include "Level/LevelData.h"
-#include <Element/ElementService.h>
-#include <SFML/System/Vector2.hpp>
-#include <vector>
-
-using namespace Level;
-using namespace Element;
+#include "../../include/Level/LevelModel.h"
 
 namespace Level
 {
-	LevelModel::LevelModel() = default;
+   
+    LevelModel::LevelModel()
+    {
+    }
 
-	LevelModel::~LevelModel() = default;
+    LevelModel::~LevelModel()
+    {
+    }
 
-	void LevelModel::initialize(int width, int height)
-	{
-		cell_width = width / number_of_columns;
-		cell_height = height / number_of_rows;
-		initializeLevelData();
-	}
+    void LevelModel::initialize(int width,int height)
+    {
+        cell_width =static_cast<float>(width) / number_of_columns;
+        cell_height = static_cast<float>(height) / number_of_rows;
 
+        initializeLevelData();
+    }
 
-	float LevelModel::getCellWidth()
-	{
-		return cell_width;
-	}
+    void LevelModel::update()
+    {
+    }
 
-	float LevelModel::getCellHeight()
-	{
-		return cell_height;
-	}
+    void LevelModel::render()
+    {
+    }
 
-	void LevelModel::initializeLevelData()
-	{
-		level_configurations.push_back(LevelData(Level::LevelNumber::ONE, &level_one_element_list));
-		level_configurations.push_back(LevelData(Level::LevelNumber::TWO, &level_two_element_list));
-	}
+    float LevelModel::getCellWidth()
+    {
+        return cell_width;
+    }
 
-	const std::vector<ElementData>& LevelModel::getElementDataList(int level_to_load)
-	{
-		return *level_configurations[level_to_load].element_data_list;
-	}
+    float LevelModel::getCellHeight()
+    {
+        return cell_height;
+    }
+
+    const vector<ElementData>& LevelModel::getElementDataList(int level_to_load)
+    {
+        return *level_configurations[level_to_load].element_data_list;
+    }
+
+    void LevelModel::initializeLevelData()
+    {
+        level_configurations.push_back(LevelData(LevelNumber::ONE,&level_1_element_list));
+        level_configurations.push_back(LevelData(LevelNumber::TWO,&level_2_element_list));
+    }
+
+    void LevelModel::destroy()
+    {
+
+    }
 }

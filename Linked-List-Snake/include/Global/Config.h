@@ -1,7 +1,5 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include <Element/ElementService.h>
-#include <Element/ElementData.h>
 
 namespace Global
 {

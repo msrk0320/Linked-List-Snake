@@ -1,4 +1,5 @@
 #pragma once
+
 namespace Player
 {
 	enum class Direction
@@ -6,6 +7,6 @@ namespace Player
 		UP,
 		DOWN,
 		LEFT,
-		RIGHT,
+		RIGHT
 	};
 }

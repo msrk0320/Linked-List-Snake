@@ -1,12 +1,16 @@
 #pragma once
-#include "Player/SnakeController.h"
-
-namespace Player {
-	class PlayerService {
+#include "SFML/Graphics.hpp"
+#include <vector>
+using namespace sf;
+using namespace std;
+namespace Player
+{
+	class SnakeController;
+	class PlayerService
+	{
 	private:
-		SnakeController* snakeController;
+		SnakeController* snake_controller;
 
-		void createController();
 		void destroy();
 
 	public:
@@ -17,7 +21,9 @@ namespace Player {
 		void update();
 		void render();
 
+		void createController();
 		void spawnPlayer();
-		std::vector<sf::Vector2i> getCurrentSnakePositionList();
+		vector<Vector2i> getSnakePositionList();
+
 	};
 }

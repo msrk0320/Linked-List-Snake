@@ -1,20 +1,23 @@
 #include "../../include/Food/FoodService.h"
-#include "../../include/Global/ServiceLocator.h"
 #include "../../include/Food/FoodItem.h"
 #include "../../include/Level/LevelModel.h"
-#include "../../include/Player/PlayerService.h"
+#include "../../include/Global/ServiceLocator.h"
+#include "SFML/Graphics.hpp"
+
 #include <iostream>
+using namespace std;
 
-namespace Food {
-	using namespace Time;
-	using namespace Global;
-	using namespace Level;
-	using namespace Player;
+using namespace Global;
+using namespace sf;
+using namespace Level;
 
-
-	FoodService::FoodService() : random_engine(random_device())
+namespace Food
+{
+	
+	FoodService::FoodService(): random_engine(new_random_device())
 	{
 		current_food_item = nullptr;
+
 	}
 	FoodService::~FoodService()
 	{
@@ -22,122 +25,73 @@ namespace Food {
 	}
 	void FoodService::initialize()
 	{
-		elapsed_duration = spawn_duration;
+		elapsed_time = spawn_duration;
 	}
-
 	void FoodService::update()
 	{
-		if (current_spawning_status == FoodSpawningStatus::ACTIVE)
+		if (current_spawn_status == FoodSpawningStatus::ACTIVE)
 		{
 			updateElapsedDuration();
-			handleFoodSpawning();
+			handleFoodSpawn();
 		}
-		if (current_food_item)
-			current_food_item->update();
-	}
 
+		if (current_food_item)
+		{
+			current_food_item->update();
+		}
+	}
 	void FoodService::render()
 	{
 		if (current_food_item)
-			current_food_item->render();
-	}
-
-	void FoodService::reset()
-	{
-		elapsed_duration = 0.f;
-	}
-
-	void FoodService::destroyFood()
-	{
-		if (current_food_item)
-			delete(current_food_item);
-	}
-
-	void FoodService::updateElapsedDuration()
-	{
-		elapsed_duration += ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
-	}
-
-	void FoodService::handleFoodSpawning()
-	{
-		if (elapsed_duration >= spawn_duration)
 		{
-			destroyFood();
-			reset();
-			spawnFood();
+		current_food_item->render();
 		}
 	}
 
 	void FoodService::startFoodSpawning()
 	{
-		current_spawning_status = FoodSpawningStatus::ACTIVE;
-		cell_width = ServiceLocator::getInstance()->getLevelService()->getCellWidth();
+		current_spawn_status = FoodSpawningStatus::ACTIVE;
+		cell_width = ServiceLocator::getInstance()->getLevelService()->getCellWidth() ;
 		cell_height = ServiceLocator::getInstance()->getLevelService()->getCellHeight();
+
+		spawnFood();
 	}
 
 	void FoodService::stopFoodSpawning()
 	{
-		current_spawning_status = FoodSpawningStatus::IN_ACTIVE;
+		current_spawn_status = FoodSpawningStatus::IN_ACTIVE;
 		destroyFood();
 		reset();
 	}
 
-	FoodItem* FoodService::createFood(sf::Vector2i position, FoodType type)
+	bool FoodService::isValidPosition(Vector2i random_position)
 	{
-		FoodItem* food = new FoodItem();
-		food->initialize(position, cell_width, cell_height, type);
-		return food;
-	}
-
-	void FoodService::spawnFood()
-	{
-		current_food_item = createFood(getValidSpawnPosition(),getRandomFoodType());
-	}
-
-	sf::Vector2i FoodService::getRandomPosition()
-	{
-		// Coordinate distribution for selecting a random position for food
-		std::uniform_int_distribution<int> x_distribution(0, LevelModel::number_of_columns - 1);
-		std::uniform_int_distribution<int> y_distribution(0, LevelModel::number_of_rows - 1);
-
-		int x_position = x_distribution(random_engine);
-		int y_position = y_distribution(random_engine);
-
-		return sf::Vector2i(x_position, y_position);
-	}
-
-	bool FoodService::isValidPosition(std::vector<sf::Vector2i> position_data, sf::Vector2i food_position)
-	{
-		for (int i = 0; i < position_data.size(); i++)
+		vector<Vector2i> obstacle_position_list = ServiceLocator::getInstance()->getElementService()->getElementPositionList();
+		vector<Vector2i> snake_position_list = ServiceLocator::getInstance()->getPlayerService()->getSnakePositionList();
+		
+		for (int i = 0; i < obstacle_position_list.size(); i++)
 		{
-			if (food_position == position_data[i]) return false;
+			if (getFoodPosition(random_position) == obstacle_position_list[i])
+			{
+				return false;
+			}
 		}
+
+		for (int i = 0; i < snake_position_list.size(); i++)
+		{
+			if (getFoodPosition(random_position) == snake_position_list[i])
+			{
+				return false;
+			}
+		}
+
 		return true;
 	}
 
-	sf::Vector2i FoodService::getValidSpawnPosition()
+	bool FoodService::processFoodCollision(Node* head_node, FoodType& out_food_type)
 	{
-		std::vector<sf::Vector2i> player_position_data = ServiceLocator::getInstance()->getPlayerService()->getCurrentSnakePositionList();
-		std::vector<sf::Vector2i> elements_position_data = ServiceLocator::getInstance()->getElementService()->getElementsPositionList();
-		sf::Vector2i spawn_position;
-
-		do spawn_position = getRandomPosition();
-		while (!isValidPosition(player_position_data, spawn_position) || !isValidPosition(elements_position_data, spawn_position));
-
-		return spawn_position;
-	}
-
-	FoodType FoodService::getRandomFoodType()
-	{
-		std::uniform_int_distribution<int> distribution(0, FoodItem::number_of_foods - 1);
-		return static_cast<FoodType>(distribution(random_engine));
-	}
-
-	bool FoodService::processFoodCollision(LinkedList::Node* head_node, FoodType& out_food_type)
-	{
-		//std::cout << current_food_item->getFoodPosition().x << "," << current_food_item->getFoodPosition().y;
-		std::cout << head_node->body_part.getPosition().x << "," << head_node->body_part.getPosition().y;
-		if (current_food_item && current_food_item->getFoodPosition() == head_node->body_part.getPosition())
+		
+		if (current_food_item && getFoodPosition(current_food_item->getFoodPosition()) == head_node->body_part.getPosition())
 		{
 			out_food_type = current_food_item->getFoodType();
 			return true;
@@ -146,4 +100,72 @@ namespace Food {
 		return false;
 	}
 
+	Vector2i FoodService::getFoodPosition(Vector2i position)
+	{
+
+		return Vector2i(position.y,position.x);
+	}
+
+	
+
+	FoodItem* FoodService::createFoodItem(Vector2i position, FoodType type)
+	{
+		FoodItem* food_item = new FoodItem();
+		food_item->initialize(position, cell_width, cell_height, type);
+
+		return food_item;
+	}
+
+	Vector2i FoodService::getRandomPosition()
+	{
+		uniform_int_distribution<int> x_distribution(0, LevelModel::number_of_rows - 1);
+		uniform_int_distribution<int> y_distribution(0, LevelModel::number_of_columns -1);
+		int xPosition = x_distribution(random_engine);
+		int yPosition = y_distribution(random_engine);
+		Vector2i random_position = Vector2i( xPosition, yPosition);
+
+		if (!isValidPosition(random_position))
+		{
+			getRandomPosition();
+		}
+
+		return random_position;
+	}
+
+	FoodType FoodService::getRandomFoodType()
+	{
+		uniform_int_distribution<int> food_distribution(0, FoodItem::number_of_food - 1);
+		return static_cast<FoodType>(food_distribution(random_engine));
+	}
+
+	void FoodService::spawnFood()
+	{
+		current_food_item = createFoodItem(getRandomPosition(), getRandomFoodType());
+
+	}
+
+	void FoodService::destroyFood()
+	{
+		if (current_food_item)
+		{
+			delete(current_food_item);
+		}
+	}
+	void FoodService::updateElapsedDuration()
+	{
+		elapsed_time += ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+	}
+	void FoodService::handleFoodSpawn()
+	{
+		if (elapsed_time >= spawn_duration)
+		{
+			destroyFood();
+			reset();
+			spawnFood();
+		}
+	}
+	void FoodService::reset()
+	{
+		elapsed_time = 0;
+	}
 }

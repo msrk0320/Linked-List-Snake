@@ -1,56 +1,58 @@
 #pragma once
-#include <SFML/System/Vector2.hpp>
-#include <vector>
-#include <random>
-#include "LinkedList/SingleLinkedList.h"
+#include "../../include/Food/FoodItem.h"
+#include "../../include/LinkedList/SingleLinkedList.h"
 
-namespace Food {
-	enum class FoodType;
-	class FoodItem;
-	enum FoodSpawningStatus
+#include <random>
+
+using namespace std;
+using namespace LinkedList;
+
+namespace Food
+{
+	enum class FoodSpawningStatus
 	{
 		ACTIVE,
 		IN_ACTIVE,
 	};
-	class FoodService {
-	private:
-		FoodItem* current_food_item;
-		float cell_width;
-		float cell_height;
 
-		void reset();
-		void updateElapsedDuration();
-		void handleFoodSpawning();
-		
-		std::default_random_engine random_engine;
-		std::random_device random_device;
+	class FoodService
+	{
+		private:
+			FoodItem* current_food_item;
+			float cell_width;
+			float cell_height;
+			
+			FoodSpawningStatus current_spawn_status;
+			const float spawn_duration = 4.0f;
+			float elapsed_time;
 
-		const float spawn_duration = 4.f;
-		float elapsed_duration;
-
-		FoodSpawningStatus current_spawning_status;
+			default_random_engine random_engine;
+			random_device new_random_device;
 
 
-	public:
-		FoodService();
-		~FoodService();
+			FoodItem* createFoodItem(Vector2i position, FoodType type);
+			Vector2i getRandomPosition();
+			FoodType getRandomFoodType();
+			void updateElapsedDuration();
+			void handleFoodSpawn();
+			void reset();
 
-		void initialize();
-		void update();
-		void render();
+		public:
+			FoodService();
+			~FoodService();
 
-		void startFoodSpawning();
-		void stopFoodSpawning();
-		void spawnFood();
-		
-		sf::Vector2i getRandomPosition();
-		sf::Vector2i getValidSpawnPosition();
-		
-		bool isValidPosition(std::vector<sf::Vector2i> position_data, sf::Vector2i food_position);
-		bool processFoodCollision(LinkedList::Node* head_node, FoodType& out_food_type);
+			void initialize();
+			void update();
+			void render();
 
-		FoodType getRandomFoodType();
-		FoodItem* createFood(sf::Vector2i position, FoodType type);
-		void destroyFood();
+			void spawnFood();
+			void startFoodSpawning();
+			void stopFoodSpawning();
+			bool isValidPosition(Vector2i random_position);
+			bool processFoodCollision(Node* head_node,FoodType& out_food_type);
+
+			void destroyFood();
+			Vector2i getFoodPosition(Vector2i position);
+
 	};
 }

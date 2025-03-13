@@ -72,64 +72,46 @@
     <ClCompile Include="source\UI\UIElement\RectangleShapeView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\Level\LevelController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="source\Level\LevelModel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Level\LevelService.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\Level\LevelView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\Level\LevelData.cpp">
+    <ClCompile Include="source\Level\LevelController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\Level\LevelNumber.cpp">
+    <ClCompile Include="source\Level\LevelService.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\Player\PlayerService.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Player\Direction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Player\Data.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\LinkedList\Node.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Player\BodyPart.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\UI\LevelSelection\LevelSelectionUIController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\LinkedList\SingleLinkedList.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Element\ElementData.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Element\Obstacle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Food\FoodType.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Food\FoodService.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Element\ElementService.cpp">
+    <ClCompile Include="source\UI\LevelSelectionMenu\LevelSelectionUIController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\Player\SnakeController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\Player\PlayerService.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Player\BodyPart.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\LinkedList\SingleLinkedList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Element\Obstacle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Element\ElementService.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Food\FoodType.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="source\Food\FoodItem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Food\FoodService.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -191,16 +173,16 @@
     <ClInclude Include="include\UI\UIElement\RectangleShapeView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Level\LevelController.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Level\LevelModel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Level\LevelService.h">
+    <ClInclude Include="include\Level\LevelView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Level\LevelView.h">
+    <ClInclude Include="include\Level\LevelController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Level\LevelService.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Level\LevelData.h">
@@ -209,25 +191,22 @@
     <ClInclude Include="include\Level\LevelNumber.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Player\PlayerService.h">
+    <ClInclude Include="include\UI\LevelSelectionMenu\LevelSelectionUIController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Player\SnakeController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\Player\PlayerService.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="include\Player\Direction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Player\Data.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\LinkedList\Node.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Player\BodyPart.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\UI\LevelSelection\LevelSelectionUIController.h">
+    <ClInclude Include="include\LinkedList\Node.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\LinkedList\SingleLinkedList.h">
@@ -245,11 +224,73 @@
     <ClInclude Include="include\Food\FoodType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Food\FoodService.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Food\FoodItem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\Food\FoodService.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\textures\alcohol.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\apple.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\burger.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\cheese.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\double_linked_list_button.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\instructions_button.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\level_one_button.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\level_two_button.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\mango.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\menu_button.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\obstacle.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\orange.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\outscal_logo.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\pizza.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\play_button.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\poision.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\quit_button.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\single_linked_list_button.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\snake_bg.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\snake_body.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

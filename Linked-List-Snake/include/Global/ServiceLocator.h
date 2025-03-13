@@ -3,26 +3,37 @@
 #include "Event/EventService.h"
 #include "UI/UIService.h"
 #include "Sound/SoundService.h"
-#include "Level/LevelService.h"
 #include "Time/TimeService.h"
+#include "Level/LevelService.h"
 #include "Player/PlayerService.h"
 #include "Element/ElementService.h"
 #include "Food/FoodService.h"
+
+using namespace Graphics;
+using namespace UI;
+using namespace Level;
+using namespace Event;
+using namespace Sound;
+using namespace Time;
+using namespace Player;
+using namespace Element;
+using namespace Food;
+
 
 namespace Global
 {
     class ServiceLocator
     {
     private:
-        Event::EventService* event_service;
-        Graphics::GraphicService* graphic_service;
-        Sound::SoundService* sound_service;
-        Level::LevelService* level_service;
-        UI::UIService* ui_service;
-        Time::TimeService* time_service;
-		Player::PlayerService* player_service;
-        Element::ElementService* element_service;
-        Food::FoodService* food_service;
+        EventService* event_service;
+        GraphicService* graphic_service;
+        SoundService* sound_service;
+        UIService* ui_service;
+        TimeService* time_service;
+        LevelService* level_service;
+        PlayerService* player_service;
+        ElementService* element_service;
+        FoodService* food_service;
 
         ServiceLocator();
         ~ServiceLocator();
@@ -37,15 +48,15 @@ namespace Global
         void update();
         void render();
 
-        Event::EventService* getEventService();
-        Graphics::GraphicService* getGraphicService();
-        Sound::SoundService* getSoundService();
-        Level::LevelService* getLevelService();
-        UI::UIService* getUIService();
-        Time::TimeService* getTimeService();
-		Player::PlayerService* getPlayerService();
-        Element::ElementService* getElementService();
-        Food::FoodService* getFoodService();
+        EventService* getEventService();
+        GraphicService* getGraphicService();
+        SoundService* getSoundService();
+        UIService* getUIService();
+        TimeService* getTimeService();
+        LevelService* getLevelService();
+        PlayerService* getPlayerService();
+        ElementService* getElementService();
+        FoodService* getFoodService();
         void deleteServiceLocator();
     };
 }

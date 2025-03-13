@@ -1,28 +1,33 @@
 #pragma once
-#include<SFML/Graphics.hpp>
-#include "UI/UIService.h"
+#include <SFML/Graphics.hpp>
+#include "../../include/UI/UIElement/ImageView.h"
 
-namespace Element {
-	using namespace sf;
+using namespace sf;
+using namespace UI::UIElement;
 
-	class Obstacle {
+namespace Element
+{
+
+	class Obstacle
+	{
 	private:
-		UI::UIElement::ImageView* obstacle_image;
-		sf::Vector2i grid_position;
-
-		void initializeObstacleImage();
-		sf::Vector2f getObstacleImagePosition();
-
+		ImageView* obstacle_image;
+		Vector2i grid_position;
 		float cell_width;
 		float cell_height;
+
+		void initializeObstacleImage();
+		Vector2f getObstacleScreenPosition();
+		void destroy();
 
 	public:
 		Obstacle();
 		~Obstacle();
 
-		void initialize(sf::Vector2i grid_pos, float width, float height);
+		void initialize(Vector2i position, float width, float height);
 		void update();
 		void render();
-		sf::Vector2i getObstaclePosition();
+
+		Vector2i getObstaclePosition();
 	};
 }

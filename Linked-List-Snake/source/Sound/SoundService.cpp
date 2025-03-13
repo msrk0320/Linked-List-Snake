@@ -20,11 +20,11 @@ namespace Sound
 	void SoundService::loadSoundFromFile()
 	{
 		if (!buffer_button_click.loadFromFile(Config::button_click_sound_path))
-			printf("Error loading Button Sound");
-		if (!buffer_death.loadFromFile(Config::death_sound_path))
-			printf("Error loading Death Sound");
-		if (!buffer_pickup.loadFromFile(Config::pickup_sound_path))
-			printf("Error loading Pickup Sound");
+			printf("Error loading background music file");
+		if(!buffer_Death.loadFromFile(Config::death_sound_path))
+			printf("Error loading background music file");
+		if (!buffer_Pickup.loadFromFile(Config::pickup_sound_path))
+			printf("Error loading background music file");
 	}
 
 	void SoundService::playSound(SoundType soundType)
@@ -35,10 +35,10 @@ namespace Sound
 			sound_effect.setBuffer(buffer_button_click);
 			break;
 		case SoundType::DEATH:
-			sound_effect.setBuffer(buffer_death);
+			sound_effect.setBuffer(buffer_Death);
 			break;
 		case SoundType::PICKUP:
-			sound_effect.setBuffer(buffer_pickup);
+			sound_effect.setBuffer(buffer_Pickup);
 			break;
 		default:
 			printf("Invalid sound type");

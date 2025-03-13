@@ -3,10 +3,12 @@
 
 using namespace Player;
 
-namespace LinkedList {
+namespace LinkedList
+{
 	struct Node
 	{
 		BodyPart body_part;
-		Node* next = nullptr;
+
+		Node* next=nullptr;
 	};
 }

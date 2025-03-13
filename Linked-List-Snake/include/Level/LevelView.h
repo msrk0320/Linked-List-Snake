@@ -1,40 +1,58 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "UI/UIElement/RectangleShapeView.h"
+#include "../../include/UI/UIElement/RectangleShapeView.h"
+
+using namespace UI::UIElement;
+using namespace sf;
 
 namespace Level
 {
-    class LevelView
-    {
-    private:
-        const sf::Color background_color = sf::Color(180, 200, 160);
-        const sf::Color border_color = sf::Color::Black;
+	class LevelController;
+	class LevelView
+	{
+	private:
 
-        UI::UIElement::RectangleShapeView* background_rectangle;
-        UI::UIElement::RectangleShapeView* border_rectangle;
+		//Background: properties
+		RectangleShapeView* background_rectangle;
+		const Color background_color = Color(180, 200, 160);
 
-        float grid_width;
-        float grid_height;
+		//Border: Properties
+		RectangleShapeView* border_rectangle;
+		const Color border_color = Color::Black;
 
-        void createViews();
-        void initializeBackground();
-        void initializeBorder();
-        void calculateGridExtents();
-        void destroy();
+		float grid_width;
+		float grid_height;
 
-    public:
-        static const int border_thickness = 10;
-        static const int border_offset_left = 40;
-        static const int border_offset_top = 40;
+		LevelController* level_controller;
 
-        LevelView();
-        ~LevelView();
+		//Background: methods
+		void initializeBackground();
 
-        void initialize();
-        void update();
-        void render();
+		//Border: methods
+		void initializeBorder();
 
-        float getGridWidth();
-        float getGridHeight();
-    };
+		void createViews();
+		void updateViews();
+		void renderViews();
+
+		void destroy();
+
+	public:
+
+		//Border: Properties
+		static const int border_thickness = 10;
+		static const int border_offset_left = 90;
+		static const int border_offset_top = 90;
+
+		LevelView(LevelController* controller);
+		~LevelView();
+
+		void initialize();
+		void update();
+		void render();
+
+		float getGridWidth();
+		float getGridHeight();
+		void calculateGridExtents();
+	};
 }

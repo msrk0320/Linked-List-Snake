@@ -1,98 +1,105 @@
 #include "../../include/Food/FoodItem.h"
 #include "../../include/Global/Config.h"
 #include "../../include/Level/LevelView.h"
-#include <SFML/Graphics.hpp>
+#include <iostream>
 
+using namespace std;
+using namespace Global;
+using namespace Level;
 
-namespace Food {
-	using namespace Global;
-	using namespace Level;
-	using namespace sf;
-	using namespace UI::UIElement;
-
+namespace Food
+{
+	
+	
 	FoodItem::FoodItem()
 	{
 		food_image = new ImageView();
+
 	}
+	
 	FoodItem::~FoodItem()
 	{
-		//delete(food_image);
+		destroy();
 	}
-	void FoodItem::initialize(sf::Vector2i grid_pos, float width, float height, FoodType type)
+
+	void FoodItem::initialize(Vector2i position, float width, float height, FoodType type)
 	{
-		grid_position = grid_pos;
-		cell_width = width;
-		cell_height = height;
 		food_type = type;
+		food_width = width;
+		food_height = height;
+		grid_position = position;
 
-		initializeFoodImage();
+		createFoodImage();
 	}
-
-	sf::String FoodItem::getFoodTexturePath() 
-	{
-		switch (food_type)
-		{
-		case Food::FoodType::APPLE:
-			return Config::apple_texture_path;
-			break;
-		case Food::FoodType::MANGO:
-			return Config::mango_texture_path;
-			break;
-		case Food::FoodType::ORANGE:
-			return Config::orange_texture_path;
-			break;
-		case Food::FoodType::PIZZA:
-			return Config::pizza_texture_path;
-			break;
-		case Food::FoodType::BURGER:
-			return Config::burger_texture_path;
-			break;
-		case Food::FoodType::CHEESE:
-			return Config::cheese_texture_path;
-			break;
-		case Food::FoodType::POISION:
-			return Config::poision_texture_path;
-			break;
-		case Food::FoodType::ALCOHOL:
-			return Config::alcohol_texture_path;
-			break;
-		default:
-			return Config::apple_texture_path;
-			break;
-		}
-	}
-
-	sf::Vector2f FoodItem::getFoodImagePosition()
-	{
-		float screen_position_x = LevelView::border_offset_left + (cell_width * grid_position.x);
-		float screen_position_y = LevelView::border_offset_top + (cell_height * grid_position.y);
-
-		return Vector2f(screen_position_x, screen_position_y);
-	}
-
-	void FoodItem::initializeFoodImage() 
-	{
-		Vector2f screen_position = getFoodImagePosition();
-		std::string food_texture_path = getFoodTexturePath();
-		food_image->initialize(food_texture_path, cell_width, cell_height, screen_position);
-		food_image->show();
-	}
-
+	
 	void FoodItem::update()
 	{
-			food_image->update();
+		food_image->update();
 	}
+	
 	void FoodItem::render()
 	{
-			food_image->render();
-	}
-	sf::Vector2i FoodItem::getFoodPosition()
-	{
-		return grid_position;
+		food_image->render();
 	}
 
 	FoodType FoodItem::getFoodType()
 	{
 		return food_type;
+	}
+
+	Vector2i FoodItem::getFoodPosition()
+	{
+		return grid_position;
+	}
+
+	void FoodItem::createFoodImage()
+	{
+		food_image->initialize(getFoodTexturePath(), food_width, food_height, getFoodScreenPosition(grid_position));
+		food_image->show();
+	}
+
+	Vector2f FoodItem::getFoodScreenPosition(Vector2i position)
+	{
+		//problem
+		float food_position_x = LevelView::border_offset_top + (position.x * food_height);
+		float food_position_y = LevelView::border_offset_left + (position.y * food_width);
+
+		return Vector2f(food_position_y,food_position_x);
+	}
+
+	String FoodItem::getFoodTexturePath()
+	{
+		switch (food_type)
+		{
+		case Food::FoodType::APPLE:
+			return Config::apple_texture_path;
+
+		case Food::FoodType::MANGO:
+			return Config::mango_texture_path;
+
+		case Food::FoodType::ORANGE:
+			return Config::mango_texture_path;
+
+		case Food::FoodType::PIZZA:
+			return Config::pizza_texture_path;
+
+		case Food::FoodType::BURGER:
+			return Config::burger_texture_path;
+
+		case Food::FoodType::CHEESE:
+			return Config::cheese_texture_path;
+
+		case Food::FoodType::POISION:
+			return Config::poision_texture_path;
+
+		case Food::FoodType::ALCOHOL:
+			return Config::alcohol_texture_path;
+
+		}
+	}
+
+	void FoodItem::destroy()
+	{
+		delete(food_image);
 	}
 }

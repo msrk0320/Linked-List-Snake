@@ -1,9 +1,11 @@
 #pragma once
 
-namespace Food {
-    enum class FoodType
-    {
-        APPLE,
+namespace Food
+{
+
+	enum class FoodType
+	{
+        APPLE=0,
         MANGO,
         ORANGE,
         PIZZA,
@@ -11,5 +13,5 @@ namespace Food {
         CHEESE,
         POISION,
         ALCOHOL,
-    };
+	};
 }
